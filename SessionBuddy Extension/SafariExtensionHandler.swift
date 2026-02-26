@@ -14,13 +14,15 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         withName messageName: String,
         from page: SFSafariPage,
         userInfo: [String : Any]?) {
-        
+
         // This method will be called when a content script provided by
         // your extension calls safari.extension.dispatchMessage("message").
         if messageName == "DOMContentLoaded" || messageName == "BeforeUnload" {
             DispatchQueue.global(qos: .userInitiated).async {
                 self.saveLatestSession()
             }
+        } else {
+            NSLog("Unknown command received: \(messageName)")
         }
     }
     
