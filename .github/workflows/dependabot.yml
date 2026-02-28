@@ -1,0 +1,17 @@
+name: Dependabot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run-dependabot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Dependabot
+        uses: github/dependabot-action@1a643ea8e57e97d53839ca779f1ecbec0f9dfb58
